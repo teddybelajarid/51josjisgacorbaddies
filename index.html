@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
+  <meta name="description" content="Website resmi Kelas 5.1 — One Class, One Story, Nineteen Memories. Temukan profil anggota, jadwal, kenangan, dan lebih banyak lagi." />
+  <meta name="theme-color" content="#A8D8EA" />
+  <meta name="author" content="Kelas 5.1" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kelas 5.1 | One Class, One Story" />
+  <meta property="og:description" content="Website cantik & modern untuk Kelas 5.1. Profil 20 anggota, jadwal piket, pelajaran, kenangan, dan banyak fitur seru!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630/A8D8EA/1B3A4B?text=Kelas+5.1+%E2%9C%A8" />
+  <meta property="og:url" content="https://yourusername.github.io/class51/" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kelas 5.1 | One Class, One Story" />
+  <meta name="twitter:description" content="Website cantik Kelas 5.1 — profil, jadwal, kenangan & more!" />
+
+  <title>Kelas 5.1 ✨ | One Class, One Story</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩵</text></svg>" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩵</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loader-content">
+      <div class="loader-circle"></div>
+      <h2 class="loader-title">Kelas 5.1</h2>
+      <p class="loader-text">Menyiapkan kenangan indah...</p>
+    </div>
+  </div>
+
+  <!-- Enter Overlay (for autoplay policy) -->
+  <div id="enter-overlay" class="enter-overlay hidden">
+    <div class="enter-card">
+      <div class="enter-icon">🎵</div>
+      <h1>ENTER CLASS 5.1</h1>
+      <p>Klik untuk masuk & putar musik latar<br><small>Now Playing: Kita — Sheila On 7</small></p>
+      <button id="enter-btn" class="btn-primary btn-lg">Masuk ke Kelas 🩵</button>
+    </div>
+  </div>
+
+  <!-- Floating Music Player -->
+  <div id="music-player" class="music-player">
+    <div class="now-playing">
+      <span class="music-icon">🎵</span>
+      <span class="now-text">Now Playing: <strong>Kita</strong> — Sheila On 7</span>
+    </div>
+    <div class="player-controls">
+      <button id="play-pause-btn" class="player-btn" title="Play / Pause" aria-label="Play or Pause">▶️</button>
+      <button id="mute-btn" class="player-btn" title="Mute / Unmute" aria-label="Mute">🔊</button>
+    </div>
+    <audio id="bg-music" loop preload="metadata">
+      <!-- Ganti src dengan file audio legal yang kamu host sendiri (misal assets/kita.mp3) -->
+      <!-- Untuk demo, gunakan track royalty-free singkat. Upload file resmi jika punya hak. -->
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+      Browser tidak mendukung audio.
+    </audio>
+  </div>
+
+  <!-- Progress Bar -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h3>Menu</h3>
+      <button id="close-sidebar" class="icon-btn" aria-label="Tutup menu">✕</button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#home" class="nav-link" data-section="home">🏠 Home</a>
+      <a href="#members" class="nav-link" data-section="members">👥 Anggota</a>
+      <a href="#schedule" class="nav-link" data-section="schedule">📅 Jadwal Pelajaran</a>
+      <a href="#piket" class="nav-link" data-section="piket">🧹 Jadwal Piket</a>
+      <a href="#memories" class="nav-link" data-section="memories">📸 Class Memories</a>
+      <a href="#birthday" class="nav-link" data-section="birthday">🎂 Birthday Corner</a>
+      <a href="#mood" class="nav-link" data-section="mood">😊 Mood of The Class</a>
+      <a href="#games" class="nav-link" data-section="games">🎮 Fun Games</a>
+      <a href="#guestbook" class="nav-link" data-section="guestbook">💌 Digital Guestbook</a>
+      <a href="#about" class="nav-link" data-section="about">ℹ️ About</a>
+    </nav>
+    <div class="sidebar-footer">
+      <button id="surprise-btn" class="btn-secondary btn-sm">✨ Surprise Me</button>
+      <div class="text-size-control">
+        <span>Ukuran teks:</span>
+        <button class="text-size-btn" data-size="small">A</button>
+        <button class="text-size-btn active" data-size="medium">A</button>
+        <button class="text-size-btn" data-size="large">A</button>
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <button id="menu-btn" class="icon-btn menu-btn" aria-label="Buka menu">☰</button>
+      <a href="#home" class="logo">
+        <span class="logo-emoji">🩵</span>
+        <span class="logo-text">Kelas 5.1</span>
+      </a>
+      <div class="header-actions">
+        <div class="search-wrapper">
+          <input type="search" id="global-search" placeholder="Cari anggota, jadwal..." aria-label="Pencarian" />
+          <span class="search-icon">🔍</span>
+        </div>
+        <button id="theme-toggle" class="icon-btn" title="Toggle theme" aria-label="Ganti tema">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- HOME -->
+    <section id="home" class="section section-home active">
+      <div class="hero">
+        <div class="hero-bg">
+          <div class="cloud cloud-1"></div>
+          <div class="cloud cloud-2"></div>
+          <div class="cloud cloud-3"></div>
+          <div class="star star-1">✦</div>
+          <div class="star star-2">✧</div>
+          <div class="star star-3">★</div>
+          <div class="star star-4">✦</div>
+        </div>
+        <div class="hero-content">
+          <p class="greeting" id="greeting">Good Morning</p>
+          <h1 class="hero-title">Welcome to<br><span class="highlight">Class 5.1</span></h1>
+          <p class="hero-slogan">One Class, One Story, <span class="highlight">Nineteen Memories</span></p>
+          <p class="hero-desc">Tempat di mana 20 jiwa bertemu, tawa berbagi, dan kenangan tercipta. Yuk jelajahi kelas kita!</p>
+          
+          <div class="hero-meta">
+            <div class="live-clock">
+              <span class="clock-icon">🕐</span>
+              <span id="live-clock">--:--:--</span>
+              <span id="live-date">---</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-label">Menuju Libur Semester</span>
+              <div id="countdown" class="countdown">-- hari</div>
+            </div>
+          </div>
+
+          <div class="hero-quote-box">
+            <p id="class-quote" class="class-quote">"Kebersamaan adalah kunci kebahagiaan."</p>
+            <span class="quote-refresh" id="refresh-quote" title="Ganti quote">🔄</span>
+          </div>
+
+          <div class="announcement-mini" id="announcement">
+            <span class="ann-icon">📢</span>
+            <div>
+              <strong>Pengumuman Terbaru</strong>
+              <p>Jangan lupa bawa alat tulis lengkap untuk ujian minggu depan! Semangat 5.1 💪</p>
+            </div>
+          </div>
+
+          <div class="hero-cta">
+            <a href="#members" class="btn-primary btn-lg">Explore Our Class →</a>
+            <button id="scroll-memories" class="btn-secondary btn-lg">Lihat Kenangan</button>
+          </div>
+        </div>
+
+        <div class="hero-illustration">
+          <div class="class-illustration">
+            <div class="hijab-group">
+              <!-- Simplified cute group of hijabi girls -->
+              <div class="person p1" style="--c:#A8D8EA">🧕</div>
+              <div class="person p2" style="--c:#FFD3B6">🧕</div>
+              <div class="person p3" style="--c:#D4A5A5">🧕</div>
+              <div class="person p4" style="--c:#9ED2C6">🧕</div>
+              <div class="person p5" style="--c:#FFAAA5">🧕</div>
+              <div class="person wali" style="--c:#FFD700" title="Wali Kelas">👩‍🏫</div>
+            </div>
+            <p class="illustration-caption">20 Santriwati + 1 Wali Kelas yang suka kuning 💛</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="stat-num">20</span>
+          <span class="stat-label">Anggota</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">1</span>
+          <span class="stat-label">Wali Kelas</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Kenangan</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">🩵</span>
+          <span class="stat-label">Kebersamaan</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMBERS -->
+    <section id="members" class="section">
+      <div class="section-header">
+        <h2>👥 Anggota Kelas 5.1</h2>
+        <p>20 jiwa hebat dengan cerita unik masing-masing</p>
+      </div>
+
+      <div class="filters-bar">
+        <input type="search" id="member-search" placeholder="Cari nama atau nickname..." />
+        <select id="absen-filter">
+          <option value="">Semua Absen</option>
+          <!-- filled by JS -->
+        </select>
+        <button id="reset-filter" class="btn-secondary btn-sm">Reset</button>
+      </div>
+
+      <div id="members-grid" class="members-grid">
+        <!-- Cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- JADWAL PELAJARAN -->
+    <section id="schedule" class="section">
+      <div class="section-header">
+        <h2>📅 Jadwal Pelajaran</h2>
+        <p>Jangan sampai telat ya!</p>
+      </div>
+      <div id="schedule-container" class="schedule-grid">
+        <!-- filled by JS -->
+      </div>
+    </section>
+
+    <!-- JADWAL PIKET -->
+    <section id="piket" class="section">
+      <div class="section-header">
+        <h2>🧹 Jadwal Piket Kelas</h2>
+        <p>Class Cleaning Schedule — jaga kebersihan bersama</p>
+      </div>
+      <div id="piket-container" class="piket-grid">
+        <!-- filled by JS -->
+      </div>
+      <div class="piket-decoration">
+        <span>🧹</span><span>🪣</span><span>✨</span><span>🧼</span>
+      </div>
+    </section>
+
+    <!-- MEMORIES -->
+    <section id="memories" class="section">
+      <div class="section-header">
+        <h2>📸 Class Memories</h2>
+        <p>Album kenangan indah kita</p>
+      </div>
+      <div class="memories-tabs">
+        <button class="mem-tab active" data-tab="firstday">Our First Day</button>
+        <button class="mem-tab" data-tab="activities">Class Activities</button>
+        <button class="mem-tab" data-tab="random">Random Moments</button>
+        <button class="mem-tab" data-tab="events">Special Events</button>
+        <button class="mem-tab" data-tab="bts">Behind The Scenes</button>
+        <button class="mem-tab" data-tab="polaroid">Polaroid Gallery</button>
+      </div>
+      <div id="memories-gallery" class="memories-gallery">
+        <!-- Placeholder polaroids -->
+        <div class="polaroid" style="--rot:-3deg">
+          <div class="polaroid-img">📷</div>
+          <p class="polaroid-caption">First day vibes ✨</p>
+        </div>
+        <div class="polaroid" style="--rot:2deg">
+          <div class="polaroid-img">🎉</div>
+          <p class="polaroid-caption">Class party time!</p>
+        </div>
+        <div class="polaroid" style="--rot:-1deg">
+          <div class="polaroid-img">📚</div>
+          <p class="polaroid-caption">Study hard, play harder</p>
+        </div>
+        <div class="polaroid" style="--rot:4deg">
+          <div class="polaroid-img">🤝</div>
+          <p class="polaroid-caption">Best friends forever</p>
+        </div>
+        <div class="polaroid" style="--rot:-2deg">
+          <div class="polaroid-img">🌙</div>
+          <p class="polaroid-caption">Night talks</p>
+        </div>
+        <div class="polaroid" style="--rot:1deg">
+          <div class="polaroid-img">🏆</div>
+          <p class="polaroid-caption">We won!</p>
+        </div>
+      </div>
+      <div class="timeline">
+        <h3>Timeline Perjalanan Kelas</h3>
+        <div class="timeline-track">
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <strong>Hari Pertama</strong>
+              <p>Semua masih canggung, tapi langsung akrab</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <strong>Pertama Kali Piket</strong>
+              <p>Belajar kerja sama sambil ketawa</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <strong>Ujian Tengah Semester</strong>
+              <p>Semangat belajar bareng</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <strong>Hari Ini</strong>
+              <p>Masih terus menulis cerita bersama</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIRTHDAY -->
+    <section id="birthday" class="section">
+      <div class="section-header">
+        <h2>🎂 Birthday Corner</h2>
+        <p>Rayakan hari spesial setiap anggota</p>
+      </div>
+      <div id="birthday-list" class="birthday-grid">
+        <!-- filled by JS -->
+      </div>
+    </section>
+
+    <!-- MOOD -->
+    <section id="mood" class="section">
+      <div class="section-header">
+        <h2>😊 Mood of The Class</h2>
+        <p>Bagaimana perasaanmu hari ini?</p>
+      </div>
+      <div class="mood-picker">
+        <button class="mood-btn" data-mood="😊">😊 Happy</button>
+        <button class="mood-btn" data-mood="😴">😴 Sleepy</button>
+        <button class="mood-btn" data-mood="💪">💪 Motivated</button>
+        <button class="mood-btn" data-mood="😤">😤 Stressed</button>
+        <button class="mood-btn" data-mood="🥰">🥰 Grateful</button>
+        <button class="mood-btn" data-mood="🤔">🤔 Thinking</button>
+        <button class="mood-btn" data-mood="🎉">🎉 Excited</button>
+        <button class="mood-btn" data-mood="😌">😌 Calm</button>
+      </div>
+      <div id="mood-results" class="mood-results">
+        <h3>Suasana Hati Kelas Hari Ini</h3>
+        <div id="mood-stats" class="mood-stats"></div>
+      </div>
+    </section>
+
+    <!-- GAMES -->
+    <section id="games" class="section">
+      <div class="section-header">
+        <h2>🎮 Fun Games</h2>
+        <p>Main bareng yuk!</p>
+      </div>
+      <div class="games-grid">
+        <div class="game-card" id="whoami-card">
+          <h3>Who Am I?</h3>
+          <p>Tebak teman dari petunjuk hobi, makanan favorit, atau fun fact!</p>
+          <button id="start-whoami" class="btn-primary">Mulai Tebak</button>
+          <div id="whoami-game" class="game-area hidden">
+            <p id="whoami-clue" class="clue"></p>
+            <input type="text" id="whoami-guess" placeholder="Tulis nickname..." />
+            <button id="whoami-check" class="btn-secondary">Cek Jawaban</button>
+            <p id="whoami-result"></p>
+          </div>
+        </div>
+        <div class="game-card">
+          <h3>Class Bingo</h3>
+          <p>Bingo kebiasaan lucu di kelas 5.1</p>
+          <div id="bingo-board" class="bingo-board">
+            <!-- filled by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUESTBOOK -->
+    <section id="guestbook" class="section">
+      <div class="section-header">
+        <h2>💌 Digital Guestbook</h2>
+        <p>Tinggalkan pesan, ucapan, atau kenangan untuk teman sekelas</p>
+      </div>
+      <form id="guestbook-form" class="guestbook-form">
+        <input type="text" id="gb-name" placeholder="Namamu / Nickname" required maxlength="40" />
+        <textarea id="gb-message" placeholder="Tulis pesanmu di sini..." required maxlength="300" rows="3"></textarea>
+        <button type="submit" class="btn-primary">Kirim Pesan 💌</button>
+      </form>
+      <div id="guestbook-list" class="guestbook-list">
+        <!-- messages from localStorage -->
+      </div>
+    </section>
+
+    <!-- ABOUT / EXTRA -->
+    <section id="about" class="section">
+      <div class="section-header">
+        <h2>ℹ️ Tentang Kelas 5.1</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Wali Kelas</h3>
+          <div class="wali-card">
+            <div class="wali-avatar" style="background:#FFD700">👩‍🏫</div>
+            <div>
+              <strong>Bu Aisyah (contoh)</strong>
+              <p>Wali kelas yang selalu support & suka warna kuning 💛</p>
+              <p class="small">"Anak-anak 5.1 adalah kebanggaan saya."</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-card">
+          <h3>19 Things About Us</h3>
+          <ul class="things-list">
+            <li>Kita selalu bantu satu sama lain</li>
+            <li>Piket jadi momen bonding</li>
+            <li>Suka tiba-tiba nyanyi bareng</li>
+            <li>Banyak yang jago desain grafis</li>
+            <li>Suka bagi-bagi snack</li>
+            <li>Punya banyak inside joke</li>
+            <li>Saling support saat ujian</li>
+            <li>Suka foto bersama di mana saja</li>
+            <li>Punya playlist kelas sendiri</li>
+            <li>Selalu ada yang bawa cerita lucu</li>
+          </ul>
+        </div>
+        <div class="about-card">
+          <h3>Our Playlist</h3>
+          <ul class="playlist">
+            <li>🎵 Kita — Sheila On 7 <small>(official class song)</small></li>
+            <li>🎵 Lagu-lagu favorit anggota (isi sendiri ya!)</li>
+          </ul>
+        </div>
+        <div class="about-card">
+          <h3>Jar of Memories</h3>
+          <p>Klik untuk membuka pesan kenangan acak</p>
+          <button id="jar-btn" class="btn-secondary">Buka Jar 🫙</button>
+          <p id="jar-message" class="jar-msg"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Member Modal -->
+  <div id="member-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Tutup">✕</button>
+      <div id="modal-body">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" class="back-to-top" aria-label="Kembali ke atas">↑</button>
+
+  <!-- Bottom Nav (Mobile) -->
+  <nav class="bottom-nav">
+    <a href="#home" class="bn-item active" data-section="home"><span>🏠</span><small>Home</small></a>
+    <a href="#members" class="bn-item" data-section="members"><span>👥</span><small>Anggota</small></a>
+    <a href="#piket" class="bn-item" data-section="piket"><span>🧹</span><small>Piket</small></a>
+    <a href="#memories" class="bn-item" data-section="memories"><span>📸</span><small>Kenangan</small></a>
+    <a href="#guestbook" class="bn-item" data-section="guestbook"><span>💌</span><small>Pesan</small></a>
+  </nav>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
